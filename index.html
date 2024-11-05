@@ -15,11 +15,12 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5'); /* Enlace de la imagen */
+            background-image: url('URL_DE_TU_IMAGEN'); /* Enlace de la imagen */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow: hidden;
         }
 
         /* Contenedor con el marco */
@@ -33,10 +34,28 @@
             width: 100%;
         }
 
+        #header {
+            font-size: 30px;
+        }
+
         #message {
             font-size: 24px;
             color: #333;
             margin-top: 20px;
+        }
+
+        /* Estilos para los elogios en movimiento */
+        .floating-word {
+            position: absolute;
+            font-size: 20px;
+            color: #d4af37; /* Dorado suave */
+            animation: float 5s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-100vh); }
         }
     </style>
 </head>
@@ -46,6 +65,14 @@
         <div id="message">Cargando mensaje...</div>
     </div>
 
+    <!-- Elementos flotantes con adjetivos elogiosos -->
+    <div class="floating-word" style="left: 10%;">Guapa</div>
+    <div class="floating-word" style="left: 25%;">Hermosa</div>
+    <div class="floating-word" style="left: 40%;">Radiante</div>
+    <div class="floating-word" style="left: 55%;">Brillante</div>
+    <div class="floating-word" style="left: 70%;">Inigualable</div>
+    <div class="floating-word" style="left: 85%;">Como un girasol</div>
+
     <script>
         const headers = {
             '2024-11-05': "Un Inicio Especial 🌻",
@@ -54,7 +81,7 @@
         };
 
         const messages = {
-            '2024-11-05': "Eres la persona más hermosa que mis ojos pueden ver 🌻",
+            '2024-11-05': "",  // El primer día no se mostrará un mensaje, sino los elogios en movimiento
             '2024-11-06': "Amarillo como la luz que traes a mi vida. Este color es parte de la sorpresa que recibirás mañana. ¿Qué será?",
             '2024-11-07': "Este anillo es único, como tú. Está hecho de detalles que representan lo especial que eres para mí. Gracias por llenar mi vida de luz y alegría."
         };
@@ -62,9 +89,14 @@
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
-            const message = messages[today] || "¡Esperando el siguiente mensaje!";
+            const message = messages[today];
+
             document.getElementById("header").innerText = header;
-            document.getElementById("message").innerText = message;
+
+            // Solo mostrar el mensaje si no es el primer día
+            if (today !== '2024-11-05') {
+                document.getElementById("message").innerText = message;
+            }
         }
 
         showMessage();
