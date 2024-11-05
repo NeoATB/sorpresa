@@ -6,7 +6,7 @@
     <title>Mensajes Especiales</title>
     <style>
         /* Fuente elegante */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
         body {
             font-family: Arial, sans-serif;
@@ -32,29 +32,7 @@
             font-family: 'Great Vibes', cursive;
         }
 
-        /* Estilos para los elogios diagonales */
-        .floating-word {
-            position: absolute;
-            font-size: 24px;
-            color: #ffffff;
-            font-family: 'Great Vibes', cursive; /* Fuente elegante */
-            opacity: 0.9;
-            transform: rotate(-20deg); /* Rotación diagonal */
-            white-space: nowrap;
-        }
-
-        /* Posición del GIF */
-        #bottom-gif {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px; /* Ajusta el tamaño según tus necesidades */
-            opacity: 0.8; /* Ajusta la opacidad para integrarlo mejor */
-            display: none; /* Oculto por defecto, solo se muestra en el primer día */
-        }
-
-        /* Mensaje en la esquina inferior derecha */
+        /* Configuración para el mensaje en la esquina inferior derecha */
         #check-tomorrow {
             position: absolute;
             bottom: 10px;
@@ -65,86 +43,102 @@
             background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para destacar el mensaje */
             padding: 8px;
             border-radius: 8px;
+            display: none; /* Oculto por defecto */
         }
     </style>
 </head>
 <body>
     <h1 id="header">Todo esto y más es lo que eres para mi ❣️​</h1>
-
-    <!-- GIF en la parte inferior central, solo se mostrará el primer día -->
-    <img id="bottom-gif" src="https://c.tenor.com/o_5RQarGvJ0AAAAd/tenor.gif" alt="GIF especial">
-
-    <!-- Mensaje en la esquina inferior derecha -->
     <div id="check-tomorrow"></div>
 
     <script>
-        const headers = {
-            '2024-11-05': "Todo esto y más es lo que eres para mi ❣️​",
-            '2024-11-06': "Un Rayo de Luz Amarillo",
-            '2024-11-07': "El Gran Final - Una Sorpresa Única"
-        };
+        // Configuración de cada día con estilos y contenidos únicos
+        const dayConfigs = {
+            '2024-11-05': {
+                backgroundImage: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5',
+                message: "Revisa la página mañana para más sorpresas 😊",
+                customElements: function() {
+                    // Ejemplo: Elogios flotantes para el primer día
+                    const adjectives = [
+                        "Guapa", "Hermosa", "Radiante", "Brillante", "Inigualable", "Como un girasol",
+                        "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
+                    ];
+                    const positions = [
+                        { top: 10, left: 10 }, { top: 20, left: 30 }, { top: 30, left: 20 },
+                        { top: 40, left: 50 }, { top: 50, left: 40 }, { top: 60, left: 60 },
+                        { top: 70, left: 70 }, { top: 20, left: 70 }, { top: 30, left: 80 },
+                        { top: 60, left: 10 }, { top: 80, left: 20 }, { top: 40, left: 80 }
+                    ];
 
-        const messages = {
-            '2024-11-05': "",  // El primer día no se mostrará un mensaje, sino los elogios en movimiento
-            '2024-11-06': "Amarillo como la luz que traes a mi vida. Este color es parte de la sorpresa que recibirás mañana. ¿Qué será?",
-            '2024-11-07': "Este anillo es único, como tú. Está hecho de detalles que representan lo especial que eres para mí. Gracias por llenar mi vida de luz y alegría."
-        };
+                    adjectives.forEach((adjective, index) => {
+                        const word = document.createElement('div');
+                        word.classList.add('floating-word');
+                        word.style.position = 'absolute';
+                        word.style.fontSize = '24px';
+                        word.style.color = '#ffffff';
+                        word.style.fontFamily = 'Great Vibes, cursive';
+                        word.style.opacity = '0.9';
+                        word.style.transform = 'rotate(-20deg)';
+                        word.style.whiteSpace = 'nowrap';
+                        word.innerText = adjective;
 
-        const bottomMessages = {
-            '2024-11-05': "Revisa la página mañana para más sorpresas 😊",
-            '2024-11-06': "Vuelve a abrir esta página a partir de las 00:00 conmigo en llamada 📞"
+                        word.style.top = `${positions[index].top}vh`;
+                        word.style.left = `${positions[index].left}vw`;
+                        document.body.appendChild(word);
+                    });
+                }
+            },
+            '2024-11-06': {
+                backgroundImage: 'https://example.com/background2.jpg', // Cambia esta URL por el fondo del segundo día
+                message: "Vuelve a abrir esta página a partir de las 00:00 conmigo en llamada 📞",
+                customElements: function() {
+                    // Configuración única para el segundo día
+                    const gif = document.createElement('img');
+                    gif.src = 'https://c.tenor.com/o_5RQarGvJ0AAAAd/tenor.gif';
+                    gif.alt = 'GIF especial';
+                    gif.style.position = 'absolute';
+                    gif.style.bottom = '10px';
+                    gif.style.left = '50%';
+                    gif.style.transform = 'translateX(-50%)';
+                    gif.style.width = '150px';
+                    gif.style.opacity = '0.8';
+                    document.body.appendChild(gif);
+                }
+            },
+            '2024-11-07': {
+                backgroundImage: 'https://example.com/background3.jpg', // Cambia esta URL por el fondo del tercer día
+                message: "El Gran Final - Una Sorpresa Única",
+                customElements: function() {
+                    // Aquí puedes añadir elementos únicos para el tercer día
+                    const finalMessage = document.createElement('div');
+                    finalMessage.innerText = "Este es el día especial que hemos estado esperando 🎉";
+                    finalMessage.style.position = 'absolute';
+                    finalMessage.style.top = '50%';
+                    finalMessage.style.left = '50%';
+                    finalMessage.style.transform = 'translate(-50%, -50%)';
+                    finalMessage.style.fontSize = '24px';
+                    finalMessage.style.color = '#ffffff';
+                    finalMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                    finalMessage.style.padding = '20px';
+                    finalMessage.style.borderRadius = '10px';
+                    document.body.appendChild(finalMessage);
+                }
+            }
         };
-
-        const backgrounds = {
-            '2024-11-05': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5', // Fondo del girasol
-            '2024-11-06': 'https://example.com/background2.jpg', // Reemplaza con el enlace del fondo para el segundo día
-            '2024-11-07': 'https://example.com/background3.jpg'  // Reemplaza con el enlace del fondo para el tercer día
-        };
-
-        const adjectives = [
-            "Guapa", "Hermosa", "Radiante", "Brillante", "Inigualable", "Como un girasol",
-            "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
-        ];
 
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
-            const header = headers[today] || "¡Esperando el siguiente mensaje!";
-            const bottomMessage = bottomMessages[today] || "";
-            const backgroundImage = backgrounds[today] || ''; // Obtiene el fondo para el día actual
+            const config = dayConfigs[today];
 
-            document.getElementById("header").innerText = header;
-            document.getElementById("check-tomorrow").innerText = bottomMessage;
+            // Aplica el fondo y el mensaje en la esquina inferior derecha
+            if (config) {
+                document.body.style.backgroundImage = `url('${config.backgroundImage}')`;
+                document.getElementById("check-tomorrow").innerText = config.message;
+                document.getElementById("check-tomorrow").style.display = "block";
 
-            // Cambia el fondo de la página si existe uno para el día actual
-            if (backgroundImage) {
-                document.body.style.backgroundImage = `url('${backgroundImage}')`;
-            }
-
-            // Mostrar el GIF solo el primer día
-            if (today === '2024-11-05') {
-                document.getElementById("bottom-gif").style.display = "block";
-
-                const body = document.querySelector('body');
-                const positions = [
-                    { top: 10, left: 10 }, { top: 20, left: 30 }, { top: 30, left: 20 },
-                    { top: 40, left: 50 }, { top: 50, left: 40 }, { top: 60, left: 60 },
-                    { top: 70, left: 70 }, { top: 20, left: 70 }, { top: 30, left: 80 },
-                    { top: 60, left: 10 }, { top: 80, left: 20 }, { top: 40, left: 80 }
-                ];
-
-                adjectives.forEach((adjective, index) => {
-                    const word = document.createElement('div');
-                    word.classList.add('floating-word');
-                    word.innerText = adjective;
-
-                    // Posiciones predefinidas para evitar solapamiento
-                    word.style.top = `${positions[index].top}vh`;
-                    word.style.left = `${positions[index].left}vw`;
-
-                    body.appendChild(word);
-                });
-            } else if (!bottomMessage) {
-                // Ocultar el mensaje de la esquina inferior derecha si no hay mensaje programado
+                // Ejecuta los elementos personalizados de cada día
+                config.customElements();
+            } else {
                 document.getElementById("check-tomorrow").style.display = "none";
             }
         }
