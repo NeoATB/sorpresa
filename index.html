@@ -144,29 +144,46 @@
                     });
                 }
             },
-            '2024-11-07': {
-                backgroundImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7wVTGZHztKT6J1GcRvgEsenql-yofI2UzMQ&s',
-                message: "¿Te gustaría...?",
-                headerText: "¿Quieres serlo?💟",
-                headerPosition: { top: '20px', left: '50%', transform: 'translateX(-50%)' },
-                gifSrc: 'https://c.tenor.com/riUjqxB_mC4AAAAd/tenor.gif',
-                gifPosition: { bottom: '10px', left: '10px', transform: '' },
-                customElements: function() {
-                    const finalMessage = document.createElement('div');
-                    finalMessage.innerText = "Este es el día especial que hemos estado esperando 🎉";
-                    finalMessage.style.position = 'absolute';
-                    finalMessage.style.top = '50%';
-                    finalMessage.style.left = '50%';
-                    finalMessage.style.transform = 'translate(-50%, -50%)';
-                    finalMessage.style.fontSize = '24px';
-                    finalMessage.style.color = '#ffffff';
-                    finalMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-                    finalMessage.style.padding = '20px';
-                    finalMessage.style.borderRadius = '10px';
-                    document.body.appendChild(finalMessage);
-                }
-            }
-        };
+'2024-11-07': {
+    backgroundImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7wVTGZHztKT6J1GcRvgEsenql-yofI2UzMQ&s',
+    message: "¿Te gustaría...?",
+    headerText: "¿Quieres serlo?💟",
+    headerPosition: { top: '20px', left: '50%', transform: 'translateX(-50%)' },
+    gifSrc: 'https://c.tenor.com/riUjqxB_mC4AAAAd/tenor.gif',
+    gifPosition: { bottom: '10px', left: '10px', transform: '' },
+    customElements: function() {
+        // Inserta una imagen grande en el centro de la pantalla
+        const largeImage = document.createElement('img');
+        largeImage.src = 'URL_DE_LA_IMAGEN_GRANDE'; // Reemplaza con la URL de la imagen que quieras mostrar
+        largeImage.alt = 'Imagen especial';
+        largeImage.style.position = 'absolute';
+        largeImage.style.top = '50%';
+        largeImage.style.left = '50%';
+        largeImage.style.transform = 'translate(-50%, -50%)';
+        largeImage.style.width = '80%'; // Ajusta el tamaño de la imagen según necesites
+        largeImage.style.height = 'auto';
+        largeImage.style.borderRadius = '15px';
+        largeImage.style.boxShadow = '0px 4px 15px rgba(0, 0, 0, 0.3)'; // Sombra para darle efecto de profundidad
+
+        document.body.appendChild(largeImage);
+
+        // Mensaje final
+        const finalMessage = document.createElement('div');
+        finalMessage.innerText = "Este es el día especial que hemos estado esperando 🎉";
+        finalMessage.style.position = 'absolute';
+        finalMessage.style.top = '80%';
+        finalMessage.style.left = '50%';
+        finalMessage.style.transform = 'translate(-50%, -50%)';
+        finalMessage.style.fontSize = '24px';
+        finalMessage.style.color = '#ffffff';
+        finalMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        finalMessage.style.padding = '20px';
+        finalMessage.style.borderRadius = '10px';
+
+        document.body.appendChild(finalMessage);
+    }
+}
+
 
         function showMessage() {
             const today = '2024-11-07'; // Cambia manualmente la fecha aquí para pruebas
