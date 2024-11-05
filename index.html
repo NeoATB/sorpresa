@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensajes Especiales</title>
     <style>
+        /* Fondo general en beige */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
             background-color: #f5f5dc; /* Beige acogedor */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+
+        /* Contenedor con el marco */
+        .container {
+            background-color: #ffffff; /* Fondo del contenido */
+            padding: 40px;
+            border: 10px solid #d4af37; /* Marco dorado suave */
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+            max-width: 600px;
+            width: 100%;
+        }
+
         #message {
             font-size: 24px;
             color: #333;
@@ -19,8 +37,10 @@
     </style>
 </head>
 <body>
-    <h1>Una Sorpresa Especial</h1>
-    <div id="message">Cargando mensaje...</div>
+    <div class="container">
+        <h1>Una Sorpresa Especial</h1>
+        <div id="message">Cargando mensaje...</div>
+    </div>
 
     <script>
         const messages = {
