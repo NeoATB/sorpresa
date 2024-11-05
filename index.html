@@ -97,7 +97,7 @@
                         word.style.position = 'absolute';
                         word.style.fontSize = '24px';
                         word.style.color = '#ffffff';
-                        word.style.fontFamily = 'Great Vibes, cursive';
+                        word.style.fontFamily = 'Great Vibes', cursive;
                         word.style.opacity = '0.9';
                         word.style.transform = 'rotate(-20deg)';
                         word.style.whiteSpace = 'nowrap';
@@ -135,12 +135,12 @@
                         img.src = imgSrc;
                         img.alt = `Imagen ${index + 1}`;
                         img.style.position = 'absolute';
-                        img.style.width = '100px';  // Ajusta el tamaño de las imágenes
+                        img.style.width = '200px';  // Tamaño más grande para llenar más espacio
                         img.style.height = 'auto';
                         img.style.top = `${positions[index % positions.length].top}vh`;
                         img.style.left = `${positions[index % positions.length].left}vw`;
                         img.style.opacity = '0.9';
-                        img.style.borderRadius = '10px';  // Agrega bordes redondeados para estética
+                        img.style.borderRadius = '10px';  // Bordes redondeados para estética
                         document.body.appendChild(img);
                     });
                 }
