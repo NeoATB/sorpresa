@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensajes Especiales</title>
     <style>
-        /* Fondo con imagen */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); /* Fuente elegante */
+        /* Fuente elegante */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); 
 
         body {
             font-family: Arial, sans-serif;
@@ -16,12 +16,12 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5'); /* Enlace de la imagen */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
+            transition: background-image 1s ease-in-out; /* Transición suave entre fondos */
         }
 
         #header {
@@ -51,6 +51,7 @@
             transform: translateX(-50%);
             width: 100px; /* Ajusta el tamaño según tus necesidades */
             opacity: 0.8; /* Ajusta la opacidad para integrarlo mejor */
+            display: none; /* Oculto por defecto, solo se muestra en el primer día */
         }
 
         /* Mensaje en la esquina inferior derecha */
@@ -70,7 +71,7 @@
 <body>
     <h1 id="header">Todo esto y más es lo que eres para mi ❣️​</h1>
 
-    <!-- GIF en la parte inferior central -->
+    <!-- GIF en la parte inferior central, solo se mostrará el primer día -->
     <img id="bottom-gif" src="https://c.tenor.com/o_5RQarGvJ0AAAAd/tenor.gif" alt="GIF especial">
 
     <!-- Mensaje en la esquina inferior derecha -->
@@ -94,6 +95,12 @@
             '2024-11-06': "Vuelve a abrir esta página a partir de las 00:00 conmigo en llamada 📞"
         };
 
+        const backgrounds = {
+            '2024-11-05': 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5', // Fondo del girasol
+            '2024-11-06': 'https://example.com/background2.jpg', // Reemplaza con el enlace del fondo para el segundo día
+            '2024-11-07': 'https://example.com/background3.jpg'  // Reemplaza con el enlace del fondo para el tercer día
+        };
+
         const adjectives = [
             "Guapa", "Hermosa", "Radiante", "Brillante", "Inigualable", "Como un girasol",
             "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
@@ -103,11 +110,20 @@
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
             const bottomMessage = bottomMessages[today] || "";
+            const backgroundImage = backgrounds[today] || ''; // Obtiene el fondo para el día actual
 
             document.getElementById("header").innerText = header;
             document.getElementById("check-tomorrow").innerText = bottomMessage;
 
+            // Cambia el fondo de la página si existe uno para el día actual
+            if (backgroundImage) {
+                document.body.style.backgroundImage = `url('${backgroundImage}')`;
+            }
+
+            // Mostrar el GIF solo el primer día
             if (today === '2024-11-05') {
+                document.getElementById("bottom-gif").style.display = "block";
+
                 const body = document.querySelector('body');
                 const positions = [
                     { top: 10, left: 10 }, { top: 20, left: 30 }, { top: 30, left: 20 },
