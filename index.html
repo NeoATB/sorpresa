@@ -52,13 +52,29 @@
             width: 100px; /* Ajusta el tamaño según tus necesidades */
             opacity: 0.8; /* Ajusta la opacidad para integrarlo mejor */
         }
+
+        /* Mensaje en la esquina inferior derecha */
+        #check-tomorrow {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #ffffff;
+            font-family: 'Great Vibes', cursive;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para destacar el mensaje */
+            padding: 8px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
     <h1 id="header">Todo esto y más es lo que eres para mi ❣️​</h1>
 
     <!-- GIF en la parte inferior central -->
-    <img id="bottom-gif" src="https://media1.tenor.com/m/o_5RQarGvJ0AAAAd/kiss.gif" alt="GIF especial">
+    <img id="bottom-gif" src="https://c.tenor.com/o_5RQarGvJ0AAAAd/tenor.gif" alt="GIF especial">
+
+    <!-- Mensaje en la esquina inferior derecha -->
+    <div id="check-tomorrow"></div>
 
     <script>
         const headers = {
@@ -73,6 +89,11 @@
             '2024-11-07': "Este anillo es único, como tú. Está hecho de detalles que representan lo especial que eres para mí. Gracias por llenar mi vida de luz y alegría."
         };
 
+        const bottomMessages = {
+            '2024-11-05': "Revisa la página mañana para más sorpresas 😊",
+            '2024-11-06': "Vuelve a abrir esta página a partir de las 00:00 conmigo en llamada 📞"
+        };
+
         const adjectives = [
             "Guapa", "Hermosa", "Radiante", "Brillante", "Inigualable", "Como un girasol",
             "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
@@ -81,7 +102,10 @@
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
+            const bottomMessage = bottomMessages[today] || "";
+
             document.getElementById("header").innerText = header;
+            document.getElementById("check-tomorrow").innerText = bottomMessage;
 
             if (today === '2024-11-05') {
                 const body = document.querySelector('body');
@@ -103,6 +127,9 @@
 
                     body.appendChild(word);
                 });
+            } else if (!bottomMessage) {
+                // Ocultar el mensaje de la esquina inferior derecha si no hay mensaje programado
+                document.getElementById("check-tomorrow").style.display = "none";
             }
         }
 
