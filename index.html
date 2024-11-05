@@ -6,6 +6,8 @@
     <title>Mensajes Especiales</title>
     <style>
         /* Fondo con imagen */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); /* Fuente elegante */
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -44,18 +46,15 @@
             margin-top: 20px;
         }
 
-        /* Estilos para los elogios en movimiento */
+        /* Estilos para los elogios diagonales */
         .floating-word {
             position: absolute;
-            font-size: 20px;
+            font-size: 24px;
             color: #d4af37; /* Dorado suave */
-            animation: float 5s infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes float {
-            from { transform: translateY(100vh); }
-            to { transform: translateY(-100vh); }
+            font-family: 'Great Vibes', cursive; /* Fuente elegante */
+            opacity: 0.9;
+            transform: rotate(-20deg); /* Rotación diagonal */
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -65,14 +64,7 @@
         <div id="message">Cargando mensaje...</div>
     </div>
 
-    <!-- Elementos flotantes con adjetivos elogiosos -->
-    <div class="floating-word" style="left: 10%;">Guapa</div>
-    <div class="floating-word" style="left: 25%;">Hermosa</div>
-    <div class="floating-word" style="left: 40%;">Radiante</div>
-    <div class="floating-word" style="left: 55%;">Brillante</div>
-    <div class="floating-word" style="left: 70%;">Inigualable</div>
-    <div class="floating-word" style="left: 85%;">Como un girasol</div>
-
+    <!-- Elementos fijos y diagonales con adjetivos elogiosos -->
     <script>
         const headers = {
             '2024-11-05': "Un Inicio Especial 🌻",
@@ -86,6 +78,11 @@
             '2024-11-07': "Este anillo es único, como tú. Está hecho de detalles que representan lo especial que eres para mí. Gracias por llenar mi vida de luz y alegría."
         };
 
+        const adjectives = [
+            "Guapa", "Hermosa", "Radiante", "Brillante", "Inigualable", "Como un girasol",
+            "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
+        ];
+
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
@@ -96,6 +93,19 @@
             // Solo mostrar el mensaje si no es el primer día
             if (today !== '2024-11-05') {
                 document.getElementById("message").innerText = message;
+            } else {
+                // Generar elogios en posiciones aleatorias en diagonal
+                const body = document.querySelector('body');
+                adjectives.forEach(adjective => {
+                    const word = document.createElement('div');
+                    word.classList.add('floating-word');
+                    word.innerText = adjective;
+                    
+                    // Posiciones aleatorias para crear un patrón diagonal
+                    word.style.top = `${Math.random() * 100}vh`;
+                    word.style.left = `${Math.random() * 100}vw`;
+                    body.appendChild(word);
+                });
             }
         }
 
