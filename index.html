@@ -11,7 +11,6 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,32 +24,19 @@
             overflow: hidden;
         }
 
-        /* Contenedor con el marco */
-        .container {
-            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
-            padding: 40px;
-            border: 10px solid #d4af37; /* Marco dorado suave */
-            border-radius: 15px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
-            max-width: 600px;
-            width: 100%;
-        }
-
         #header {
             font-size: 30px;
-        }
-
-        #message {
-            font-size: 24px;
-            color: #333;
-            margin-top: 20px;
+            color: #ffffff;
+            position: absolute;
+            top: 20px;
+            font-family: 'Great Vibes', cursive;
         }
 
         /* Estilos para los elogios diagonales */
         .floating-word {
             position: absolute;
             font-size: 24px;
-            color: #f5f5dc; /* Dorado suave */
+            color: #ffd700; /* Dorado claro */
             font-family: 'Great Vibes', cursive; /* Fuente elegante */
             opacity: 0.9;
             transform: rotate(-20deg); /* Rotación diagonal */
@@ -59,12 +45,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="header">Una Sorpresa Especial</h1>
-        <div id="message">Cargando mensaje...</div>
-    </div>
+    <h1 id="header">Una Sorpresa Especial</h1>
 
-    <!-- Elementos fijos y diagonales con adjetivos elogiosos -->
     <script>
         const headers = {
             '2024-11-05': "Un Inicio Especial 🌻",
@@ -83,27 +65,40 @@
             "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
         ];
 
+        function getRandomPosition(existingPositions) {
+            const minDistance = 100; // Distancia mínima en píxeles para evitar solapamiento
+            let top, left, tooClose;
+
+            do {
+                top = Math.random() * 80 + 10; // Ajuste para mantener dentro de los márgenes
+                left = Math.random() * 80 + 10;
+                tooClose = existingPositions.some(pos => 
+                    Math.hypot(pos.top - top, pos.left - left) < minDistance
+                );
+            } while (tooClose);
+
+            existingPositions.push({ top, left });
+            return { top, left };
+        }
+
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
-            const message = messages[today];
-
             document.getElementById("header").innerText = header;
 
-            // Solo mostrar el mensaje si no es el primer día
-            if (today !== '2024-11-05') {
-                document.getElementById("message").innerText = message;
-            } else {
-                // Generar elogios en posiciones aleatorias en diagonal
+            if (today === '2024-11-05') {
                 const body = document.querySelector('body');
+                const positions = []; // Para rastrear posiciones y evitar solapamiento
+
                 adjectives.forEach(adjective => {
                     const word = document.createElement('div');
                     word.classList.add('floating-word');
                     word.innerText = adjective;
-                    
-                    // Posiciones aleatorias para crear un patrón diagonal
-                    word.style.top = `${Math.random() * 100}vh`;
-                    word.style.left = `${Math.random() * 100}vw`;
+
+                    const { top, left } = getRandomPosition(positions);
+                    word.style.top = `${top}vh`;
+                    word.style.left = `${left}vw`;
+
                     body.appendChild(word);
                 });
             }
