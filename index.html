@@ -116,7 +116,7 @@
                 gifSrc: 'https://media.tenor.com/38oPAwnuYKYAAAAM/patrick-star-happy.gif',
                 gifPosition: { bottom: '20px', right: '20px', transform: '' },
                 customElements: function() {
-                    // Nuevas posiciones para evitar solapamientos
+                    // Nuevas posiciones organizadas (izquierda, centro izquierda, centro derecha, derecha)
                     const images = [
                         'https://www.bing.com/images/blob?bcid=qGgJ19HHb7UHNg',
                         'https://www.bing.com/images/blob?bcid=RDEdoN.Y9rUHqxcxoNWLuD9SqbotqVTdP9o',
@@ -125,8 +125,8 @@
                     ];
 
                     const positions = [
-                        { top: 5, left: 15 }, { top: 5, left: 65 }, { top: 30, left: 15 },
-                        { top: 30, left: 65 }, { top: 55, left: 20 }, { top: 55, left: 70 }
+                        { top: 10, left: 10 }, { top: 35, left: 15 }, { top: 60, left: 10 },  // Lado izquierdo
+                        { top: 10, left: 70 }, { top: 35, left: 75 }, { top: 60, left: 70 }   // Lado derecho
                     ];
 
                     images.forEach((imgSrc, index) => {
