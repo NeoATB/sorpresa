@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Especiales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f9f9f9;
+        }
+        #message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Una Sorpresa Especial</h1>
+    <div id="message">Cargando mensaje...</div>
+
+    <script>
+        const messages = {
+            '2024-11-05': "Hoy empieza un pequeño juego para ti. Durante tres días, recibirás pistas sobre una sorpresa especial. 😊",
+            '2024-11-06': "Amarillo como la luz que traes a mi vida. Este color es parte de la sorpresa que recibirás mañana. ¿Qué será?",
+            '2024-11-07': "Este anillo es único, como tú. Está hecho de detalles que representan lo especial que eres para mí. Gracias por llenar mi vida de luz y alegría."
+        };
+
+        function showMessage() {
+            const today = new Date().toISOString().split('T')[0];
+            const message = messages[today] || "¡Esperando el siguiente mensaje!";
+            document.getElementById("message").innerText = message;
+        }
+
+        showMessage();
+    </script>
+</body>
+</html>
