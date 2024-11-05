@@ -21,14 +21,14 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
-            transition: background-image 1s ease-in-out; /* Transición suave entre fondos */
+            transition: background-image 1s ease-in-out;
         }
 
+        /* Configuración básica del título */
         #header {
             font-size: 30px;
             color: #ffffff;
             position: absolute;
-            top: 20px;
             font-family: 'Great Vibes', cursive;
         }
 
@@ -40,16 +40,33 @@
             font-size: 16px;
             color: #ffffff;
             font-family: 'Great Vibes', cursive;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para destacar el mensaje */
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 8px;
             border-radius: 8px;
-            display: none; /* Oculto por defecto */
+            display: none;
+        }
+
+        /* Configuración básica del GIF */
+        #dynamic-gif {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            opacity: 0.8;
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Título -->
     <h1 id="header">Todo esto y más es lo que eres para mi ❣️​</h1>
+
+    <!-- Mensaje en la esquina inferior derecha -->
     <div id="check-tomorrow"></div>
+
+    <!-- GIF dinámico -->
+    <img id="dynamic-gif" alt="GIF especial">
 
     <script>
         // Configuración de cada día con estilos y contenidos únicos
@@ -57,6 +74,10 @@
             '2024-11-05': {
                 backgroundImage: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQiWZDLg9D1OwgjRuBnc51SL-cSZVKsVbqyyaTJD_LwhZhlFtL5',
                 message: "Revisa la página mañana para más sorpresas 😊",
+                headerText: "Eres mi inspiración constante 🌻",
+                headerPosition: { top: '20px', left: '50%', transform: 'translateX(-50%)' },
+                gifSrc: 'https://media.tenor.com/38oPAwnuYKYAAAAM/patrick-star-happy.gif',
+                gifPosition: { bottom: '10px', left: '50%', transform: 'translateX(-50%)' },
                 customElements: function() {
                     // Ejemplo: Elogios flotantes para el primer día
                     const adjectives = [
@@ -89,27 +110,21 @@
                 }
             },
             '2024-11-06': {
-                backgroundImage: 'https://i.pinimg.com/564x/2c/fe/f7/2cfef7c7d139e4f9ec9488a3fd367919.jpg', // Cambia esta URL por el fondo del segundo día
+                backgroundImage: 'https://i.pinimg.com/564x/2c/fe/f7/2cfef7c7d139e4f9ec9488a3fd367919.jpg',
                 message: "Vuelve a abrir esta página a partir de las 00:00 conmigo en llamada 📞",
-                customElements: function() {
-                    // Configuración única para el segundo día
-                    const gif = document.createElement('img');
-                    gif.src = 'https://media.tenor.com/38oPAwnuYKYAAAAM/patrick-star-happy.gif';
-                    gif.alt = 'GIF especial';
-                    gif.style.position = 'absolute';
-                    gif.style.bottom = '10px';
-                    gif.style.left = '50%';
-                    gif.style.transform = 'translateX(-50%)';
-                    gif.style.width = '150px';
-                    gif.style.opacity = '0.8';
-                    document.body.appendChild(gif);
-                }
+                headerText: "Una cita a la medianoche ✨",
+                headerPosition: { top: '10px', left: '50%', transform: 'translateX(-50%)' },
+                gifSrc: 'https://media.tenor.com/38oPAwnuYKYAAAAM/patrick-star-happy.gif',
+                gifPosition: { bottom: '20px', right: '20px', transform: '' }
             },
             '2024-11-07': {
-                backgroundImage: 'https://example.com/background3.jpg', // Cambia esta URL por el fondo del tercer día
+                backgroundImage: 'https://example.com/background3.jpg',
                 message: "El Gran Final - Una Sorpresa Única",
+                headerText: "¡Hoy es el día especial! 🎉",
+                headerPosition: { top: '20px', left: '50%', transform: 'translateX(-50%)' },
+                gifSrc: 'https://example.com/special_gif.gif', // Cambia esta URL al gif que quieres usar en el tercer día
+                gifPosition: { bottom: '10px', left: '10px', transform: '' },
                 customElements: function() {
-                    // Aquí puedes añadir elementos únicos para el tercer día
                     const finalMessage = document.createElement('div');
                     finalMessage.innerText = "Este es el día especial que hemos estado esperando 🎉";
                     finalMessage.style.position = 'absolute';
@@ -128,17 +143,31 @@
 
         function showMessage() {
             //const today = new Date().toISOString().split('T')[0];
-            const today = '2024-11-06';
+            const today = '2024-11-06'; // Cambia manualmente la fecha aquí para pruebas
             const config = dayConfigs[today];
 
-            // Aplica el fondo y el mensaje en la esquina inferior derecha
             if (config) {
+                // Aplica el fondo
                 document.body.style.backgroundImage = `url('${config.backgroundImage}')`;
+                // Aplica el mensaje de la esquina inferior derecha
                 document.getElementById("check-tomorrow").innerText = config.message;
                 document.getElementById("check-tomorrow").style.display = "block";
 
-                // Ejecuta los elementos personalizados de cada día
-                config.customElements();
+                // Configura el título
+                const header = document.getElementById("header");
+                header.innerText = config.headerText;
+                Object.assign(header.style, config.headerPosition);
+
+                // Configura el GIF
+                const gif = document.getElementById("dynamic-gif");
+                gif.src = config.gifSrc;
+                gif.style.display = "block";
+                Object.assign(gif.style, config.gifPosition);
+
+                // Ejecuta los elementos personalizados de cada día si existen
+                if (config.customElements) {
+                    config.customElements();
+                }
             } else {
                 document.getElementById("check-tomorrow").style.display = "none";
             }
