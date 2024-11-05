@@ -149,11 +149,11 @@
                 headerText: "¿Quieres serlo?💟",
                 headerPosition: { top: '20px', left: '50%', transform: 'translateX(-50%)' },
                 gifSrc: 'https://c.tenor.com/riUjqxB_mC4AAAAd/tenor.gif',
-                gifPosition: { bottom: '10px', left: '10px', transform: '' },
+                gifPosition: { bottom: '20px', left: '20px', transform: '' },
                 customElements: function() {
                     // Inserta una imagen grande en el centro de la pantalla
                     const largeImage = document.createElement('img');
-                    largeImage.src = 'URL_DE_LA_IMAGEN_GRANDE'; // Reemplaza con la URL de la imagen grande
+                    largeImage.src = 'https://www.bing.com/images/blob?bcid=qFaa97VXOLUHMg'; // Reemplaza con la URL de la imagen grande
                     largeImage.alt = 'Imagen especial';
                     largeImage.style.position = 'absolute';
                     largeImage.style.top = '50%';
@@ -165,27 +165,13 @@
                     largeImage.style.boxShadow = '0px 4px 15px rgba(0, 0, 0, 0.3)';
 
                     document.body.appendChild(largeImage);
-
-                    // Mensaje final
-                    const finalMessage = document.createElement('div');
-                    finalMessage.innerText = "Este es el día especial que hemos estado esperando 🎉";
-                    finalMessage.style.position = 'absolute';
-                    finalMessage.style.top = '80%';
-                    finalMessage.style.left = '50%';
-                    finalMessage.style.transform = 'translate(-50%, -50%)';
-                    finalMessage.style.fontSize = '24px';
-                    finalMessage.style.color = '#ffffff';
-                    finalMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-                    finalMessage.style.padding = '20px';
-                    finalMessage.style.borderRadius = '10px';
-
-                    document.body.appendChild(finalMessage);
                 }
             }
         };
 
         function showMessage() {
-            const today = new Date().toISOString().split('T')[0]; // Cambia manualmente la fecha aquí para pruebas
+          //  const today = new Date().toISOString().split('T')[0]; // Cambia manualmente la fecha aquí para pruebas
+            const today = '2024-11-07';
             const config = dayConfigs[today];
 
             if (config) {
