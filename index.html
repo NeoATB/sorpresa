@@ -65,22 +65,6 @@
             "Encantadora", "Resplandeciente", "Maravillosa", "Única", "Cálida", "Apasionante"
         ];
 
-        function getRandomPosition(existingPositions) {
-            const minDistance = 100; // Distancia mínima en píxeles para evitar solapamiento
-            let top, left, tooClose;
-
-            do {
-                top = Math.random() * 80 + 10; // Ajuste para mantener dentro de los márgenes
-                left = Math.random() * 80 + 10;
-                tooClose = existingPositions.some(pos => 
-                    Math.hypot(pos.top - top, pos.left - left) < minDistance
-                );
-            } while (tooClose);
-
-            existingPositions.push({ top, left });
-            return { top, left };
-        }
-
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
             const header = headers[today] || "¡Esperando el siguiente mensaje!";
@@ -88,16 +72,21 @@
 
             if (today === '2024-11-05') {
                 const body = document.querySelector('body');
-                const positions = []; // Para rastrear posiciones y evitar solapamiento
+                const positions = [
+                    { top: 10, left: 10 }, { top: 20, left: 30 }, { top: 30, left: 20 },
+                    { top: 40, left: 50 }, { top: 50, left: 40 }, { top: 60, left: 60 },
+                    { top: 70, left: 70 }, { top: 20, left: 70 }, { top: 30, left: 80 },
+                    { top: 60, left: 10 }, { top: 80, left: 20 }, { top: 40, left: 80 }
+                ];
 
-                adjectives.forEach(adjective => {
+                adjectives.forEach((adjective, index) => {
                     const word = document.createElement('div');
                     word.classList.add('floating-word');
                     word.innerText = adjective;
 
-                    const { top, left } = getRandomPosition(positions);
-                    word.style.top = `${top}vh`;
-                    word.style.left = `${left}vw`;
+                    // Posiciones predefinidas para evitar solapamiento
+                    word.style.top = `${positions[index].top}vh`;
+                    word.style.left = `${positions[index].left}vw`;
 
                     body.appendChild(word);
                 });
