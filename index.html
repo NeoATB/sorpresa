@@ -42,10 +42,23 @@
             transform: rotate(-20deg); /* Rotación diagonal */
             white-space: nowrap;
         }
+
+        /* Posición del GIF */
+        #bottom-gif {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Ajusta el tamaño según tus necesidades */
+            opacity: 0.8; /* Ajusta la opacidad para integrarlo mejor */
+        }
     </style>
 </head>
 <body>
-    <h1 id="header">Una Sorpresa Especial</h1>
+    <h1 id="header">Todo esto y más es lo que eres para mi ❣️​</h1>
+
+    <!-- GIF en la parte inferior central -->
+    <img id="bottom-gif" src="https://media1.tenor.com/m/o_5RQarGvJ0AAAAd/kiss.gif" alt="GIF especial">
 
     <script>
         const headers = {
