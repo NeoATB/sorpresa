@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi amor</title>
+    <title>Mensajes Especiales</title>
     <style>
         /* Fondo general en beige */
         body {
@@ -38,11 +38,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hermosa</h1>
+        <h1 id="header">Una Sorpresa Especial</h1>
         <div id="message">Cargando mensaje...</div>
     </div>
 
     <script>
+        const headers = {
+            '2024-11-05': "Un Inicio Especial 🌻",
+            '2024-11-06': "Un Rayo de Luz Amarillo",
+            '2024-11-07': "El Gran Final - Una Sorpresa Única"
+        };
+
         const messages = {
             '2024-11-05': "Eres la persona más hermosa que mis ojos pueden ver 🌻",
             '2024-11-06': "Amarillo como la luz que traes a mi vida. Este color es parte de la sorpresa que recibirás mañana. ¿Qué será?",
@@ -51,7 +57,9 @@
 
         function showMessage() {
             const today = new Date().toISOString().split('T')[0];
+            const header = headers[today] || "¡Esperando el siguiente mensaje!";
             const message = messages[today] || "¡Esperando el siguiente mensaje!";
+            document.getElementById("header").innerText = header;
             document.getElementById("message").innerText = message;
         }
 
